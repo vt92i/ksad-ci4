@@ -38,6 +38,9 @@ $routes->get('/book-details/(:any)', 'Book::bookDetails/$1');
 $routes->get('/add-book', 'Book::addBook');
 $routes->post('/add-book', 'Book::addBook');
 
+$routes->get('/edit-book/(:any)', 'Book::editBook/$1');
+$routes->post('/edit-book/(:any)', 'Book::editBook/$1');
+
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');
 

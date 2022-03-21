@@ -61,6 +61,14 @@
                                     <i class="fas fa-info-circle"></i>
                                     Details
                                 </a>
+                                <a class="btn btn-warning" href="edit-book/<?=$book['slug']?>">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="delete-book/<?=$book['slug']?>">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach;?>

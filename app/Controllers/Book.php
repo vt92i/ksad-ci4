@@ -86,4 +86,52 @@ class Book extends BaseController {
 
     }
 
+    public function editBook($slug) {
+        session();
+        $query = $this->bookModel->getBookDetails($slug);
+
+        if ($this->request->getMethod() == 'get') {
+            $data = array(
+                'book' => $query,
+                'categories' => $this->categoryModel->orderBy('book_category_name')->findAll(),
+                'validation' => \Config\Services::validation(),
+            );
+            return view('book/edit', $data);
+        }
+
+        if ($this->request->getMethod() == 'post') {
+            if (!$this->validate([
+                'book_title' => 'required',
+                'book_author' => 'required',
+                'book_release_year' => 'required|numeric',
+                'book_price' => 'required|numeric',
+                'book_discount' => 'required|numeric',
+                'book_qty' => 'required|numeric',
+                'book_category' => 'required|numeric',
+            ])) {
+                return redirect()->to('/edit-book/' . $slug)->withInput();
+            }
+
+            $data = array(
+                'title' => $this->request->getVar('book_title'),
+                'slug' => url_title($this->request->getVar('book_title'), '-', true),
+                'author' => $this->request->getVar('book_author'),
+                'release_year' => $this->request->getVar('book_release_year'),
+                'price' => $this->request->getVar('book_price'),
+                'discount' => $this->request->getVar('book_discount'),
+                'stock' => $this->request->getVar('book_qty'),
+                'book_category_id' => $this->request->getVar('book_category'),
+            );
+
+            if ($this->bookModel->update($query['book_id'], $data)) {
+                session()->setFlashdata('success', 'Buku berhasil diedit');
+            } else {
+                session()->setFlashdata('error', 'Buku gagal diedit');
+            }
+
+            return redirect()->to('/books');
+        }
+
+    }
+
 }
