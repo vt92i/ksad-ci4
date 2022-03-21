@@ -22,6 +22,7 @@
                                 <p class="card-text">Tahun Terbit: <?=$book['release_year']?></p>
                                 <p class="card-text">Harga: <?=$book['price']?> IDR</p>
                                 <p class="card-text">Stock: <?=$book['stock']?></p>
+                                <p class="card-text">Diskon: <?=$book['discount']?></p>
                                 <p class="card-text">Kategori: <?=$book['book_category_name']?></p>
                                 <a class="btn btn-dark w-100" href="/books">
                                     <i class="fas fa-arrow-left"></i>
