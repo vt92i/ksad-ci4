@@ -35,6 +35,8 @@ $routes->get('/', 'Home::index');
 
 $routes->get('/books', 'Book::index');
 $routes->get('/book-details/(:any)', 'Book::bookDetails/$1');
+$routes->get('/add-book', 'Book::addBook');
+$routes->post('/add-book', 'Book::addBook');
 
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');
