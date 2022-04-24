@@ -55,10 +55,10 @@ class Book extends BaseController {
             if (!$this->validate([
                 'book_title' => 'required|is_unique[book.title]',
                 'book_author' => 'required',
-                'book_release_year' => 'required|numeric',
-                'book_price' => 'required|numeric',
-                'book_discount' => 'required|numeric',
-                'book_qty' => 'required|numeric',
+                'book_release_year' => 'required|numeric|greater_than_equal_to[1]',
+                'book_price' => 'required|numeric|greater_than_equal_to[1]',
+                'book_discount' => 'numeric|greater_than_equal_to[0]|permit_empty',
+                'book_qty' => 'required|numeric|greater_than_equal_to[1]',
                 'book_category' => 'required|numeric',
             ])) {
                 return redirect()->to('/add-book')->withInput();
@@ -103,10 +103,10 @@ class Book extends BaseController {
             if (!$this->validate([
                 'book_title' => 'required',
                 'book_author' => 'required',
-                'book_release_year' => 'required|numeric',
-                'book_price' => 'required|numeric',
-                'book_discount' => 'required|numeric',
-                'book_qty' => 'required|numeric',
+                'book_release_year' => 'required|numeric|greater_than_equal_to[1]',
+                'book_price' => 'required|numeric|greater_than_equal_to[1]',
+                'book_discount' => 'numeric|greater_than_equal_to[0]|permit_empty',
+                'book_qty' => 'required|numeric|greater_than_equal_to[1]',
                 'book_category' => 'required|numeric',
             ])) {
                 return redirect()->to('/edit-book/' . $slug)->withInput();
