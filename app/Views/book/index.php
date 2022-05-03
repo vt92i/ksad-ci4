@@ -31,6 +31,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Cover</th>
                             <th>Judul Buku</th>
                             <th>Kategori</th>
                             <th>Harga</th>
@@ -41,6 +42,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
+                            <th>Cover</th>
                             <th>Judul Buku</th>
                             <th>Kategori</th>
                             <th>Harga</th>
@@ -52,6 +54,7 @@
                         <?php $n = 1;foreach ($books as $book): ?>
                         <tr>
                             <td><?=$n++;?></td>
+                            <td><img src="images/<?=$book['cover']?>" alt="Cover" width="100"></td>
                             <td><?=$book['title']?></td>
                             <td><?=$book['book_category_name']?></td>
                             <td><?=$book['price']?></td>
@@ -65,7 +68,7 @@
                                     <i class="fas fa-edit"></i>
                                     Edit
                                 </a>
-                                <a class="btn btn-danger" href="delete-book/<?=$book['slug']?>">
+                                <a class="btn btn-danger" href="delete-book/<?=$book['book_id']?>" onclick="return confirm('Are you sure you want to delete this book?')">
                                     <i class="fas fa-trash"></i>
                                     Delete
                                 </a>

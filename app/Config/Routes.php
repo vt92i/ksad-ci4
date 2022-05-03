@@ -41,6 +41,8 @@ $routes->post('/add-book', 'Book::addBook');
 $routes->get('/edit-book/(:any)', 'Book::editBook/$1');
 $routes->post('/edit-book/(:any)', 'Book::editBook/$1');
 
+$routes->get('/delete-book/(:num)', 'Book::deleteBook/$1');
+
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');
 

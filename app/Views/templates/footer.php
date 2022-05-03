@@ -18,6 +18,20 @@
 <script src="<?=base_url()?>/assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="<?=base_url()?>/js/datatables-simple-demo.js"></script>
+
+<script>
+function previewImage() {
+    const cover_element = document.getElementById("book_cover")
+    const img_preview_element = document.getElementById("img-preview")
+    const file_cover = new FileReader()
+
+    file_cover.readAsDataURL(cover_element.files[0])
+    file_cover.onload = (e) => {
+        img_preview_element.src = e.target.result
+    }
+}
+</script>
+
 </body>
 
 </html>

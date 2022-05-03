@@ -60,8 +60,18 @@ class Book extends BaseController {
                 'book_discount' => 'numeric|greater_than_equal_to[0]|permit_empty',
                 'book_qty' => 'required|numeric|greater_than_equal_to[1]',
                 'book_category' => 'required|numeric',
+                'book_cover' => 'max_size[book_cover,1024]|is_image[book_cover]|mime_in[book_cover,image/jpeg,image/png]',
             ])) {
                 return redirect()->to('/add-book')->withInput();
+            }
+
+            $book_cover = $this->request->getFile('book_cover');
+
+            if ($book_cover->getError() === 4) {
+                $filename = 'default.png';
+            } else {
+                $filename = $book_cover->getRandomName();
+                $book_cover->move('images', $filename);
             }
 
             $data = array(
@@ -73,6 +83,7 @@ class Book extends BaseController {
                 'discount' => $this->request->getVar('book_discount'),
                 'stock' => $this->request->getVar('book_qty'),
                 'book_category_id' => $this->request->getVar('book_category'),
+                'cover' => $filename,
             );
 
             if ($this->bookModel->save($data)) {
@@ -108,8 +119,24 @@ class Book extends BaseController {
                 'book_discount' => 'numeric|greater_than_equal_to[0]|permit_empty',
                 'book_qty' => 'required|numeric|greater_than_equal_to[1]',
                 'book_category' => 'required|numeric',
+                'book_cover' => 'max_size[book_cover,1024]|is_image[book_cover]|mime_in[book_cover,image/jpeg,image/png]',
             ])) {
                 return redirect()->to('/edit-book/' . $slug)->withInput();
+            }
+
+            $book_cover = $this->request->getFile('book_cover');
+
+            if ($book_cover->getError() === 4) {
+                $filename = 'default.png';
+            } else {
+                $filename = $book_cover->getRandomName();
+                $book_cover->move('images', $filename);
+
+                $old_book_cover = $query['cover'];
+
+                if ($old_book_cover != 'default.png') {
+                    unlink('images/' . $old_book_cover);
+                }
             }
 
             $data = array(
@@ -121,6 +148,7 @@ class Book extends BaseController {
                 'discount' => $this->request->getVar('book_discount'),
                 'stock' => $this->request->getVar('book_qty'),
                 'book_category_id' => $this->request->getVar('book_category'),
+                'cover' => $filename,
             );
 
             if ($this->bookModel->update($query['book_id'], $data)) {
@@ -132,6 +160,23 @@ class Book extends BaseController {
             return redirect()->to('/books');
         }
 
+    }
+
+    public function deleteBook($id) {
+        $query = $this->bookModel->where(['book_id' => $id])->first();
+        $old_book_cover = $query['cover'];
+
+        if ($this->bookModel->delete($id)) {
+            session()->setFlashdata('success', 'Buku berhasil dihapus');
+        } else {
+            session()->setFlashdata('error', 'Buku gagal dihapus');
+        }
+
+        if ($old_book_cover != 'default.png') {
+            unlink('images/' . $old_book_cover);
+        }
+
+        return redirect()->to('/books');
     }
 
 }

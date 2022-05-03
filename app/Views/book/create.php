@@ -10,7 +10,7 @@
                 Tambah Buku
             </div>
             <div class="card-body">
-                <form id="book-form" action="add-book" method="post">
+                <form id="book-form" action="add-book" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3 row">
                         <label for="book_title" class="col-sm-2 col-form-label">Judul</label>
@@ -74,6 +74,17 @@
                     </div>
 
                     <div class="mb-3 row">
+                        <label for="book_cover" class="col-sm-2 col-form-label">Cover</label>
+                        <div class="col-sm-4">
+                            <input type="file" class="form-control <?=$validation->hasError('book_cover') ? 'is-invalid' : ''?>" id="book_cover" name="book_cover" value="<?=old('book_cover')?>" onchange="previewImage()">
+                            <div class="col-md-6">
+                                <img class="img-thumbnail" src="images/default.png" alt="Book cover" id="img-preview">
+                            </div>
+                            <div class="invalid-feedback">
+                                <?=$validation->getError('book_cover')?>
+                            </div>
+                        </div>
+
                         <label for="book_qty" class="col-sm-2 col-form-label">Stok</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control <?=$validation->hasError('book_qty') ? 'is-invalid' : ''?>" id="book_qty" name="book_qty" value="<?=old('book_qty')?>">

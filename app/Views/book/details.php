@@ -13,7 +13,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0 p-3">
                         <div class="col p-3">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81e5aV0DCUL.jpg" class="img-fluid rounded-start" alt="Book">
+                            <img src="/images/<?=$book['cover']?>" class="img-fluid rounded-start" alt="Book">
                         </div>
                         <div class="col">
                             <div class="card-body">
