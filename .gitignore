@@ -125,3 +125,6 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# Public images
+/public/images/*
+!/public/images/default.png
