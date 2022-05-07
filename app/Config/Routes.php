@@ -33,6 +33,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Book
 $routes->get('/books', 'Book::index');
 $routes->get('/book-details/(:any)', 'Book::bookDetails/$1');
 $routes->get('/add-book', 'Book::addBook');
@@ -42,6 +43,11 @@ $routes->get('/edit-book/(:any)', 'Book::editBook/$1');
 $routes->post('/edit-book/(:any)', 'Book::editBook/$1');
 
 $routes->get('/delete-book/(:num)', 'Book::deleteBook/$1');
+
+// Gallery
+$routes->get('/gallery', 'Gallery::index');
+$routes->post('/gallery', 'Gallery::addGallery');
+$routes->get('/delete-gallery/(:any)', 'Gallery::deleteGallery/$1');
 
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');

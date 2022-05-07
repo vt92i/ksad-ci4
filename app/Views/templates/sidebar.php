@@ -12,6 +12,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Data Buku
                     </a>
+                    <a class="nav-link" href="/gallery">
+                        <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                        Data Gallery
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
