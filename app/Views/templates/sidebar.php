@@ -20,6 +20,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                         Data Supplier
                     </a>
+                    <a class="nav-link" href="/customers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Data Customer
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">

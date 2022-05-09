@@ -59,6 +59,10 @@ $routes->post('/edit-supplier/(:num)', 'Supplier::editSupplier/$1');
 
 $routes->get('/delete-supplier/(:num)', 'Supplier::deleteSupplier/$1');
 
+// Customers
+$routes->get('/customer', 'Customer::index')->setAutoRoute(true);
+$routes->addRedirect('/customers', 'customer/index');
+
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');
 
