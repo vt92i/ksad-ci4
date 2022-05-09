@@ -49,6 +49,16 @@ $routes->get('/gallery', 'Gallery::index');
 $routes->post('/gallery', 'Gallery::addGallery');
 $routes->get('/delete-gallery/(:any)', 'Gallery::deleteGallery/$1');
 
+// Supplier
+$routes->get('/suppliers', 'Supplier::index');
+$routes->get('/add-supplier', 'Supplier::addSupplier');
+$routes->post('/add-supplier', 'Supplier::addSupplier');
+
+$routes->get('/edit-supplier/(:num)', 'Supplier::editSupplier/$1');
+$routes->post('/edit-supplier/(:num)', 'Supplier::editSupplier/$1');
+
+$routes->get('/delete-supplier/(:num)', 'Supplier::deleteSupplier/$1');
+
 // phpinfo()
 $routes->get('/phpinfo', 'phpinfo::index');
 

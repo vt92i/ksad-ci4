@@ -16,6 +16,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
                         Data Gallery
                     </a>
+                    <a class="nav-link" href="/suppliers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                        Data Supplier
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
